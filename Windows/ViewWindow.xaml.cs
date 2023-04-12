@@ -23,6 +23,7 @@ namespace CanteenDEx
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Content = new Pages.ViewPage();
         }
     }
 }
