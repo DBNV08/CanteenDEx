@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,6 +59,28 @@ namespace CanteenDEx.Pages
             for (int i = Start; i < End; i++)
                 Lb.Items.Add(ProductList[i]);
             NumOfPage.Content = CurrentPage.ToString();
+        }
+
+        private void SortComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+                if (SortComboBox.Text == "Стоимость по возрастанию")
+                {
+                    Lb.Items.SortDescriptions.Clear();
+                    Lb.ItemsSource = null;
+                    Lb.Items.Clear();
+                    for (int i = 0; i < 15; i++)
+                        Lb.Items.Add(ProductList[i]);
+                    Lb.Items.SortDescriptions.Add(new SortDescription("Price", ListSortDirection.Ascending));
+                }
+                if (SortComboBox.Text == "Стоимость по убыванию")
+                {
+                    Lb.Items.SortDescriptions.Clear();
+                    Lb.ItemsSource = null;
+                    Lb.Items.Clear();
+                    for (int i = 0; i < 15; i++)
+                        Lb.Items.Add(ProductList[i]);
+                    Lb.Items.SortDescriptions.Add(new SortDescription("Price", ListSortDirection.Descending));
+                }
         }
     }
 }
